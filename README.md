@@ -2,15 +2,15 @@
 Ghost is an Android application replicating the Game 'Ghost', a two-player word game. For more info on Ghost, see [Wikipedia](http://en.wikipedia.org/wiki/Ghost_%28game%29)
 
 ### Main Features:
-    - versus Computer( Easy, Medium, Hard)
-    - versus Player
-        - Offline, one phone
-        - Online, turn-based based. Using *Google play game services*
-    - Highscore
-    - Multi language support
-    - Color themes
-    - Avatar per user
-    - Sounds (minimal, can be turned off)
+- versus Computer( Easy, Medium, Hard)
+- versus Player
+    - Offline, one phone
+    - Online, turn-based based. Using *Google play game services*
+- Highscore
+- Multi language support
+- Color themes
+- Avatar per user
+- Sounds (minimal, can be turned off)
 
 ### Sketches, user experience (Activities)
 Main goal is keeping it as simple as possible, only add stuff most (>80%) of the users want.
@@ -33,5 +33,5 @@ Highscores, seperate highscores for singeplayer, offline multiplayer, online mul
 ![Highscores](/doc/highscores.JPG)
 
 ### Frameworks
-    - Google play services (Multiplayer support)
-    - Access to gallery
+- Google play services (Multiplayer support)
+- Access to gallery
