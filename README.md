@@ -31,11 +31,11 @@ Main goal is keeping it as simple as possible, only add stuff most (>80%) of the
 
 ### Models
 ##### Dictionary
-    **Fields**
+    <pre><b>Fields</b></pre>
         Public wordlist         : String[]
         Public wordlistFiltered : String[]
         Private language        : String
-    **Methods**
+    <pre><b>Methods</b></pre>
         Public void filter(Sring filter)
           info
         Public int count()
@@ -43,12 +43,12 @@ Main goal is keeping it as simple as possible, only add stuff most (>80%) of the
         Public void reset()
 
 ##### Game
-    **Fields**
+    <pre><b>Fields</b></pre>
         Private dictionary      : Dictionary[]
         Private playerIds       : int[]
         Private turnPlayerId    : int
         Private word            : String
-    **Methods**
+    <pre><b>Methods</b></pre>
         Public int ended()
         Public Dictionary getDictionary()
         Public int[] getPlayerIds()
@@ -59,11 +59,11 @@ Main goal is keeping it as simple as possible, only add stuff most (>80%) of the
         Public int winner()
 
 ##### User
-    **Fields**
+    <pre><b>Fields</b></pre>
         Private id               : int
         Private name             : String
         Private score            : int
-    **Methods**
+    <pre><b>Methods</b></pre>
         Public String getName()
         Public int getScore()
         Public int getId()
