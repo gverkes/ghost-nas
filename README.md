@@ -12,25 +12,28 @@ Ghost is an Android application replicating the Game 'Ghost', a two-player word 
 - Avatar per user
 - Sounds (minimal, can be turned off)
 
-### Sketches, user experience (Activities)
+### Activities
 Main goal is keeping it as simple as possible, only add stuff most (>80%) of the users want.
-
 [Pictures of Sketches](SKETCHES.md)
 
-### Activities
 ##### MainActivity
+Select a game mode here, change the setting or see highscores
 
 ##### SinglePlayerActivity
+Start SinglePlayer game here, specifying language of dictionary and A.I. difficulty
 
 ##### MultiPlayerActivity
+Start MultiPlayer game here, specifying language and player names
 
 ##### GameActivity
+Play the game here
 
 ##### HighscoresActivity
+See highscores for SinglePlayer and Multiplayer
 
 
 ### Models
-##### Dictionary
+#### Dictionary
 <pre><b>Fields</b>
     Public wordlist         : String[]
     Public wordlistFiltered : String[]
@@ -43,7 +46,7 @@ Main goal is keeping it as simple as possible, only add stuff most (>80%) of the
     Public void reset()
 </pre>
 
-##### Game
+#### Game
 <pre>
 <b>Fields</b>
     Private dictionary      : Dictionary[]
@@ -61,7 +64,7 @@ Main goal is keeping it as simple as possible, only add stuff most (>80%) of the
     Public int winner()
 </pre>
 
-##### User
+#### User
 <pre>
 <b>Fields</b>
     Private id               : int
