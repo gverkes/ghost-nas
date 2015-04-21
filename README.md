@@ -32,6 +32,60 @@ Settings, change volume and change theme color
 Highscores, seperate highscores for singeplayer, offline multiplayer, online multiplayer.
 ![Highscores](/doc/highscores.JPG)
 
+### Activities
+##### MainActivity
+
+##### SinglePlayerActivity
+
+##### MultiPlayerActivity
+
+##### GameActivity
+
+##### HighscoresActivity
+
+
+### Models
+##### Dictionary
+###### Fields
+- Public wordlist         : String[]
+- Public wordlistFiltered : String[]
+- Private language         : String
+###### Methods
+- Public void filter(Sring filter)
+    info
+- Public int count()
+- Public String result()
+- Public void reset()
+
+##### Game
+###### Fields
+- Private dictionary      : Dictionary[]
+- Private playerIds       : int[]
+- Private turnPlayerId    : int
+- Private word            : String
+###### Methods
+- Public int ended()
+- Public Dictionary getDictionary()
+- Public int[] getPlayerIds()
+- Public void guess(char geussedChar)
+- Public void setPlayerIds(int[] playerIds)
+- Public void setDictionary(Dictionary dictionary)
+- Public int turn()
+- Public int winner()
+
+##### User
+###### Fields
+- Private id               : int
+- Private name             : String
+- Private score            : int
+###### Methods
+- Public String getName()
+- Public int getScore()
+- Public int getId()
+- Public void setName(Sring name)
+    info
+
+
 ### Frameworks
 - Google play services (Multiplayer support)
 - Access to gallery
