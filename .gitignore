@@ -30,4 +30,6 @@ proguard/
 *.iml
 .idea
 .gradle
-build/
+
+.DS_Store
+/build
