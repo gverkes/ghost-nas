@@ -31,16 +31,16 @@ Main goal is keeping it as simple as possible, only add stuff most (>80%) of the
 
 ### Models
 ##### Dictionary
-###### Fields
-- Public wordlist         : String[]
-- Public wordlistFiltered : String[]
-- Private language         : String
-###### Methods
-- Public void filter(Sring filter)
-    info
-- Public int count()
-- Public String result()
-- Public void reset()
+    Fields
+    - Public wordlist         : String[]
+    - Public wordlistFiltered : String[]
+    - Private language         : String
+    Methods
+    - Public void filter(Sring filter)
+        info
+    - Public int count()
+    - Public String result()
+    - Public void reset()
 
 ##### Game
 ###### Fields
