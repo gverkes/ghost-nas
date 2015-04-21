@@ -31,44 +31,44 @@ Main goal is keeping it as simple as possible, only add stuff most (>80%) of the
 
 ### Models
 ##### Dictionary
-    Fields
-    - Public wordlist         : String[]
-    - Public wordlistFiltered : String[]
-    - Private language         : String
-    Methods
-    - Public void filter(Sring filter)
-        info
-    - Public int count()
-    - Public String result()
-    - Public void reset()
+    **Fields**
+        Public wordlist         : String[]
+        Public wordlistFiltered : String[]
+        Private language        : String
+    **Methods**
+        Public void filter(Sring filter)
+          info
+        Public int count()
+        Public String result()
+        Public void reset()
 
 ##### Game
-###### Fields
-- Private dictionary      : Dictionary[]
-- Private playerIds       : int[]
-- Private turnPlayerId    : int
-- Private word            : String
-###### Methods
-- Public int ended()
-- Public Dictionary getDictionary()
-- Public int[] getPlayerIds()
-- Public void guess(char geussedChar)
-- Public void setPlayerIds(int[] playerIds)
-- Public void setDictionary(Dictionary dictionary)
-- Public int turn()
-- Public int winner()
+    **Fields**
+        Private dictionary      : Dictionary[]
+        Private playerIds       : int[]
+        Private turnPlayerId    : int
+        Private word            : String
+    **Methods**
+        Public int ended()
+        Public Dictionary getDictionary()
+        Public int[] getPlayerIds()
+        Public void guess(char geussedChar)
+        Public void setPlayerIds(int[] playerIds)
+        Public void setDictionary(Dictionary dictionary)
+        Public int turn()
+        Public int winner()
 
 ##### User
-###### Fields
-- Private id               : int
-- Private name             : String
-- Private score            : int
-###### Methods
-- Public String getName()
-- Public int getScore()
-- Public int getId()
-- Public void setName(Sring name)
-    info
+    **Fields**
+        Private id               : int
+        Private name             : String
+        Private score            : int
+    **Methods**
+        Public String getName()
+        Public int getScore()
+        Public int getId()
+        Public void setName(Sring name)
+          info
 
 
 ### Frameworks
