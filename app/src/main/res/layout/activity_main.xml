@@ -13,8 +13,9 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:clickable="false"
-        android:background="@null" />
+        android:clickable="true"
+        android:background="@null"
+        android:onClick="onClickSettings" />
 
     <Button
         android:layout_width="wrap_content"
@@ -24,7 +25,8 @@
         android:drawableLeft="@drawable/ic_group_black_48dp"
         android:layout_above="@+id/btnMultiplayer"
         android:layout_centerHorizontal="true"
-        style="@style/Base.TextAppearance.AppCompat.Button" />
+        style="@style/Base.TextAppearance.AppCompat.Button"
+        android:onClick="onClickSingleplayer" />
 
     <Button
         android:layout_width="wrap_content"
@@ -34,7 +36,8 @@
         android:drawableLeft="@drawable/ic_person_black_48dp"
         android:layout_centerVertical="true"
         android:layout_alignLeft="@+id/btnSingleplayer"
-        android:layout_alignStart="@+id/btnSingleplayer" />
+        android:layout_alignStart="@+id/btnSingleplayer"
+        android:onClick="onClickMultiplayer" />
 
     <Button
         android:layout_width="wrap_content"
@@ -46,7 +49,8 @@
         android:layout_alignRight="@+id/btnMultiplayer"
         android:layout_alignEnd="@+id/btnMultiplayer"
         android:layout_alignLeft="@+id/btnMultiplayer"
-        android:layout_alignStart="@+id/btnMultiplayer" />
+        android:layout_alignStart="@+id/btnMultiplayer"
+        android:onClick="onClickHighscores" />
 
 
 </RelativeLayout>

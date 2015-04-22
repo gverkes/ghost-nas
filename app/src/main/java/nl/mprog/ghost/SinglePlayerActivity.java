@@ -1,39 +1,56 @@
 package nl.mprog.ghost;
 
-import android.support.v7.app.ActionBarActivity;
+import android.app.Activity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageButton;
+
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 
-public class SinglePlayerActivity extends ActionBarActivity {
+public class SinglePlayerActivity extends Activity {
+    public static final String LANGUAGE_NONE = "";
+    public static final String LANGUAGE_EN = "en";
+    public static final String LANGUAGE_NL = "nl";
+
+    // Initialize language on english
+    public static String currentLanguage = LANGUAGE_EN;
+    ImageButton imgBtnLangEn, imgBtnLangNl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_single_player);
+
+        imgBtnLangEn = (ImageButton) findViewById(R.id.imgBtnLangEn);
+        imgBtnLangNl = (ImageButton) findViewById(R.id.imgBtnLangNl);
+        imgBtnLangEn.setImageResource(R.drawable.language_en_selected);
     }
 
+    public void onClickLangEnglish(View view) {
+        // if current language is english change it to dutch by clicking on english button
+       if (currentLanguage == LANGUAGE_EN) {
+           imgBtnLangEn.setImageResource(R.drawable.language_en);
+           currentLanguage = LANGUAGE_NONE;
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_single_player, menu);
-        return true;
+       } else {
+           imgBtnLangNl.setImageResource(R.drawable.language_nl);
+           imgBtnLangEn.setImageResource(R.drawable.language_en_selected);
+           currentLanguage = LANGUAGE_EN;
+       }
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+    public void onClickLangDutch(View view) {
+        // if current language is dutch change it to english by clicking on dutch button
+        if (currentLanguage == LANGUAGE_NL) {
+            imgBtnLangNl.setImageResource(R.drawable.language_nl);
+            currentLanguage = LANGUAGE_NONE;
+        } else {
+            imgBtnLangEn.setImageResource(R.drawable.language_en);
+            imgBtnLangNl.setImageResource(R.drawable.language_nl_selected);
+            currentLanguage = LANGUAGE_NL;
         }
-
-        return super.onOptionsItemSelected(item);
     }
 }

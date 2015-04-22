@@ -1,39 +1,42 @@
 package nl.mprog.ghost;
 
-import android.support.v7.app.ActionBarActivity;
+import android.app.Activity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+
+import nl.mprog.ghost.database.UserDbHandler;
 
 
-public class HighscoreActivity extends ActionBarActivity {
+public class HighscoreActivity extends Activity {
+    public ArrayList<HashMap<String, String>> userList;
+    TextView txt1, txt2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_highscore);
-    }
 
+        txt1 = (TextView) findViewById(R.id.txt1);
+        txt2 = (TextView) findViewById(R.id.txt2);
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_highscore, menu);
-        return true;
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+    protected void onResume() {
+        super.onResume();
+        UserDbHandler dbHandler = new UserDbHandler(this);
+        userList = dbHandler.getUserList();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        String names = "";
+        for (HashMap<String, String> map : userList) {
+            names += map.get("name");
         }
 
-        return super.onOptionsItemSelected(item);
+        txt1.setText(names);
     }
+
+
 }
