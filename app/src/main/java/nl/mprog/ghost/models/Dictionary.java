@@ -21,23 +21,28 @@ public class Dictionary {
 
     public void filter(String filter) {
         List<String> tempWordlistFiltered = new ArrayList<>();
-        for (String word : this.wordlistFiltered) {
+        for (String word : wordlistFiltered) {
             if (word.startsWith(filter))
                tempWordlistFiltered.add(word);
         }
-        this.wordlistFiltered = new ArrayList<>(tempWordlistFiltered);
+
+        wordlistFiltered = new ArrayList<>(tempWordlistFiltered);
     }
 
     public int count() {
-        return this.wordlistFiltered.size();
+        return wordlistFiltered.size();
+    }
+
+    public String get_language() {
+        return language;
     }
 
     public String result() {
-        return (this.count() == 1) ? this.wordlistFiltered.get(0) : null;
+        return (this.count() == 1) ? wordlistFiltered.get(0) : null;
     }
 
     public void reset() {
-        this.wordlistFiltered = new ArrayList<>(this.wordlist);
+        wordlistFiltered = new ArrayList<>(wordlist);
     }
 
 }

@@ -1,4 +1,7 @@
 package nl.mprog.ghost.models;
+
+import android.provider.BaseColumns;
+
 /**
  * Created by Govert on 4/21/15.
  * Simple user class, used for the word game 'Ghost'
@@ -6,14 +9,26 @@ package nl.mprog.ghost.models;
 
 
 public class User {
+
+
     private int id;
     private String name;
     private int score;
     private int numberOfGames;
 
+    public User() { }
+
     public User(String name) {
         this.name = name;
-        this.score = 0;
+        score = 0;
+        numberOfGames = 0;
+    }
+
+    public User(int id, String name, int score, int numberOfGames) {
+        this.id = id;
+        this.name = name;
+        this.score = score;
+        this.numberOfGames = numberOfGames;
     }
 
     @Override
@@ -38,7 +53,7 @@ public class User {
     }
 
     public void increaseNumberOfGames() {
-        this.numberOfGames++;
+        numberOfGames++;
     }
 
     public int getScore() {

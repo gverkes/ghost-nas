@@ -20,16 +20,16 @@ public class Game {
 
     public Game(Dictionary dictionary, List<User> players) {
         this.dictionary = dictionary;
-        this.word = new String();
+        word = new String();
         this.players = players;
 
         if (this.players.size() == 1)
-            this.gameMode = this.SINGLEPLAYER_MODE;
+            gameMode = SINGLEPLAYER_MODE;
         else
-            this.gameMode = this.MULTIPLAYER_MODE;
+            gameMode = MULTIPLAYER_MODE;
 
-        this.winnerPlayer = null;
-        this.turnPlayer = players.get(0);
+        winnerPlayer = null;
+        turnPlayer = this.players.get(0);
     }
 
     public Dictionary getDictionary() {
