@@ -4,6 +4,9 @@ package nl.mprog.ghost.models;
  * Basic dictionary class
  */
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,6 +30,22 @@ public class Dictionary {
         }
 
         wordlistFiltered = new ArrayList<>(tempWordlistFiltered);
+    }
+
+    public void loadFile(String filename) {
+        try (BufferedReader br = new BufferedReader(new FileReader(filename)))
+        {
+
+            String sCurrentLine;
+
+            while ((sCurrentLine = br.readLine()) != null) {
+                System.out.println(sCurrentLine);
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     public int count() {

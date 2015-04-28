@@ -8,4 +8,8 @@
     <string name="btnHighscoreText">    Highscores</string>
     <string name="btnMultiplayerText">    Multiplayer</string>
     <string name="btnSingleplayerText">    Singeplayer</string>
+    <string name="txtPlayerNameDefault">Player Name</string>
+    <string name="btnStart">Start</string>
+    <string name="txtHintPlayerOneName">Name Player One</string>
+    <string name="txtHintPlayerTwoName">Name Player Two</string>
 </resources>

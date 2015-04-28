@@ -13,9 +13,11 @@
         android:paddingRight="4.0dip"
         android:paddingBottom="1.0dip"
         android:layout_width="fill_parent" android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
+        android:id="@+id/languageLayout"
+        android:layout_above="@+id/txtPlayerName"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="68dp">
 
         <ImageButton
             android:id="@+id/imgBtnLangEn"
@@ -39,4 +41,23 @@
             android:onClick="onClickLangDutch"
             android:clickable="true" />
     </LinearLayout>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/txtPlayerName"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:hint="@string/txtPlayerNameDefault" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btnStart"
+        android:id="@+id/button"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="46dp" />
 </RelativeLayout>
