@@ -4,17 +4,27 @@ package nl.mprog.ghost.models;
  * Basic dictionary class
  */
 
+import android.content.Context;
+
 import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+
 
 
 public class Dictionary {
     public List<String> wordlist;
     public List<String> wordlistFiltered;
     private String language;
+
+    public Dictionary(Context context, String filename, String language) {
+        this.wordlist = new ArrayList<>();
+        this.loadAssetFile(context, filename);
+        this.wordlistFiltered = new ArrayList<>(this.wordlist);
+        this.language = language;
+    }
 
     public Dictionary(List<String> wordlist, String language) {
         this.wordlist = wordlist;
@@ -25,27 +35,32 @@ public class Dictionary {
     public void filter(String filter) {
         List<String> tempWordlistFiltered = new ArrayList<>();
         for (String word : wordlistFiltered) {
-            if (word.startsWith(filter))
+            if (word.toUpperCase().startsWith(filter.toUpperCase()))
                tempWordlistFiltered.add(word);
         }
 
         wordlistFiltered = new ArrayList<>(tempWordlistFiltered);
     }
 
-    public void loadFile(String filename) {
-        try (BufferedReader br = new BufferedReader(new FileReader(filename)))
-        {
-
-            String sCurrentLine;
-
-            while ((sCurrentLine = br.readLine()) != null) {
-                System.out.println(sCurrentLine);
-            }
-
-        } catch (IOException e) {
+    public void loadAssetFile(Context context, String filename) {
+        BufferedReader br = null;
+        try {
+            br = new BufferedReader(new InputStreamReader(context.getAssets().open(filename))); //throwing a FileNotFoundException?
+            String word;
+            while((word = br.readLine()) != null)
+                this.wordlist.add(word); //break txt file into different words, add to wordList
+        }
+        catch(IOException e) {
             e.printStackTrace();
         }
-
+        finally {
+            try {
+                br.close(); //stop reading
+            }
+            catch(IOException ex) {
+                ex.printStackTrace();
+            }
+        }
     }
 
     public int count() {

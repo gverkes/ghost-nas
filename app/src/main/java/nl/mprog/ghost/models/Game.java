@@ -7,65 +7,46 @@ package nl.mprog.ghost.models;
 import java.util.List;
 
 
-public class Game {
-    public static int SINGLEPLAYER_MODE = 0;
-    public static int MULTIPLAYER_MODE = 1;
-
+public abstract class Game {
     private Dictionary dictionary;
-    private int gameMode;
-    private List<User> players;
-    private User winnerPlayer;
-    private User turnPlayer;
-    private String word;
+    private StringBuffer guessWord;
 
-    public Game(Dictionary dictionary, List<User> players) {
+    public Game(Dictionary dictionary) {
         this.dictionary = dictionary;
-        word = new String();
-        this.players = players;
-
-        if (this.players.size() == 1)
-            gameMode = SINGLEPLAYER_MODE;
-        else
-            gameMode = MULTIPLAYER_MODE;
-
-        winnerPlayer = null;
-        turnPlayer = this.players.get(0);
+        guessWord = new StringBuffer();
     }
 
     public Dictionary getDictionary() {
         return dictionary;
     }
 
-    public void setDictionary(Dictionary dictionary) {
-        this.dictionary = dictionary;
+    public StringBuffer getGuessWord() {
+        return guessWord;
     }
 
-    public List<User> getPlayerIds() {
-        return players;
+    public void guess(char guessedChar) {
+        guessWord.append(guessedChar);
+        dictionary.filter(guessWord.toString());
     }
 
-    public User getTurnPlayers() {
-        return turnPlayer;
+    public void reset() {
+        dictionary.reset();
+        guessWord = new StringBuffer();
     }
 
-    public String getWord() {
-        return word;
+    public int wordsLeft() {
+        return dictionary.count();
     }
 
-    public boolean ended() {
-        return winnerPlayer != null;
-    }
+    public abstract boolean ended();
 
-    public void guess(char geussedChar) {
+    public abstract User turn();
 
-    }
+    public abstract User winner();
 
-    public User turn() {
-        return turnPlayer;
-    }
+    public abstract String getWinMessage();
 
-    public User winner() {
-        return winnerPlayer;
-    }
+    public abstract String getTurnPlayerMessage();
 
+    public abstract String getVersusMessage();
 }

@@ -5,12 +5,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
 
-
-public class SinglePlayerActivity extends Activity {
+public class SingleplayerActivity extends Activity {
     public static final String LANGUAGE_NONE = "";
     public static final String LANGUAGE_EN = "en";
     public static final String LANGUAGE_NL = "nl";

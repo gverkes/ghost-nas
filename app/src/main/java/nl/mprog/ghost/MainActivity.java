@@ -28,12 +28,12 @@ public class MainActivity extends Activity {
     }
 
     public void onClickSingleplayer(View view) {
-        Intent intent = new Intent(this, SinglePlayerActivity.class);
+        Intent intent = new Intent(this, SingleplayerActivity.class);
         startActivity(intent);
     }
 
     public void onClickMultiplayer(View view) {
-        Intent intent = new Intent(this, MultiPlayerActivity.class);
+        Intent intent = new Intent(this, MultiplayerActivity.class);
         startActivity(intent);
     }
 
