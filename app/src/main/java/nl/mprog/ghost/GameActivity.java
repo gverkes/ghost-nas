@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.TextView;
 
 import nl.mprog.ghost.models.Game;
-import nl.mprog.ghost.models.MultiplayerGame;
 
 public class GameActivity extends Activity {
     public static final String TAG = "GameActivity";
@@ -17,7 +16,7 @@ public class GameActivity extends Activity {
 
     Game game;
 
-    TextView txtGuessWord, txtVersus, txtWordsLeft, txtTurnPlayer;
+    TextView txtGuessWord, txtVersus, txtTurnPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

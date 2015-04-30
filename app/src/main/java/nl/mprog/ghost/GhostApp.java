@@ -10,6 +10,10 @@ import nl.mprog.ghost.models.User;
  * Created by govert on 4/28/15.
  */
 public class GhostApp extends Application{
+    public static final String LANGUAGE_NONE = "";
+    public static final String LANGUAGE_EN = "en";
+    public static final String LANGUAGE_NL = "nl";
+
     public static final int SINGLEPLAYER_MODE = 0;
     public static final int MULTIPLAYER_MODE = 1;
 

@@ -68,6 +68,11 @@ public class UserDbHandler extends SQLiteOpenHelper {
         db.close(); // Closing database connection
     }
 
+    public void clear() {
+        SQLiteDatabase db = getWritableDatabase();
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
+    }
+
     public void update(User user) {
 
         SQLiteDatabase db = getWritableDatabase();
@@ -113,6 +118,36 @@ public class UserDbHandler extends SQLiteOpenHelper {
         db.close();
         return userList;
 
+    }
+
+    public User getUserByName(String username){
+        SQLiteDatabase db = getReadableDatabase();
+        String selectQuery =  "SELECT  " +
+                KEY_ID + "," +
+                KEY_USERNAME + "," +
+                KEY_SCORE + "," +
+                KEY_NO_OF_GAMES +
+                " FROM " + TABLE_NAME +
+                " WHERE " + KEY_USERNAME + "=?";
+
+        int iCount =0;
+        User user = null;
+
+        Cursor cursor = db.rawQuery(selectQuery, new String[] { String.valueOf(username) } );
+
+        if (cursor.moveToFirst()) {
+            do {
+                user = new User(cursor.getInt(cursor.getColumnIndex(KEY_ID)),
+                        cursor.getString(cursor.getColumnIndex(KEY_USERNAME)),
+                        cursor.getInt(cursor.getColumnIndex(KEY_SCORE)),
+                        cursor.getInt(cursor.getColumnIndex(KEY_NO_OF_GAMES)));
+
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        db.close();
+        return user;
     }
 
     public User getUserById(int Id){

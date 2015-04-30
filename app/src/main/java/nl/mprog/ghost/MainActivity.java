@@ -19,7 +19,6 @@ import nl.mprog.ghost.database.UserDbHandler;
 import nl.mprog.ghost.models.User;
 
 public class MainActivity extends Activity {
-    UserDbHandler dbHandler = new UserDbHandler(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
