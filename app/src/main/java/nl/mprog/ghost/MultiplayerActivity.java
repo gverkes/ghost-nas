@@ -76,7 +76,6 @@ public class MultiplayerActivity extends Activity {
         if (!currentLanguage.equals(ghostApp.LANGUAGE_NONE)) {
             if (!txtPlayerOneName.getText().equals("")) {
                 if (!txtPlayerTwoName.getText().equals("")) {
-                    List<User> players = new ArrayList<>();
                     User playerOne = new User(txtPlayerOneName.getText().toString());
                     User playerTwo = new User(txtPlayerTwoName.getText().toString());
 
@@ -87,13 +86,9 @@ public class MultiplayerActivity extends Activity {
                         dbHandler.insert(playerOne);
                     }
 
-                    players.add(playerOne);
-                    players.add(playerTwo);
-
                     Dictionary dictionary = new Dictionary(this, currentLanguage, currentLanguage);
 
-                    Game game = new MultiplayerGame(dictionary, players);
-                    ghostApp.setGame(game);
+                    ghostApp.setGame(new MultiplayerGame(dictionary, playerOne, playerTwo));
                     ghostApp.setGameMode(ghostApp.MULTIPLAYER_MODE);
 
                     Intent intent = new Intent(this, GameActivity.class);

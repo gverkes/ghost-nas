@@ -6,20 +6,17 @@ import java.util.List;
  * Created by govert on 4/28/15.
  */
 public class MultiplayerGame extends Game {
-    private List<User> players;
-    private int indexTurnPlayer;
+    private User playerOne, playerTwo;
+    private User turnPlayer;
     private User winner;
 
-    public MultiplayerGame(Dictionary dictionary, List<User> players) {
+    public MultiplayerGame(Dictionary dictionary, User playerOne, User playerTwo) {
         super(dictionary);
 
-        if (players.size() == 2) {
-            this.players = players;
-        } else {
-            throw new IllegalArgumentException("MultiplayerGame class can only be constructed with players list of size 2");
-        }
+        this.playerOne = playerOne;
+        this.playerTwo = playerTwo;
 
-        indexTurnPlayer = 0;
+        turnPlayer = playerOne;
         winner= null;
     }
 
@@ -32,12 +29,11 @@ public class MultiplayerGame extends Game {
     public void guess(char guessedChar) {
         super.guess(guessedChar);
         this.nextTurn();
-        
+
         if (super.wordsLeft() == 0) {
             winner = this.turn();
         } else if (super.wordsLeft() == 1) {
             winner = this.turn();
-        } else {
         }
     }
 
@@ -48,11 +44,11 @@ public class MultiplayerGame extends Game {
 
     @Override
     public User turn() {
-        return players.get(indexTurnPlayer);
+        return turnPlayer;
     }
 
     public void nextTurn() {
-        indexTurnPlayer = 1 - indexTurnPlayer;
+        turnPlayer = (turnPlayer == playerOne) ? playerTwo : playerOne;
     }
 
     @Override
@@ -70,6 +66,6 @@ public class MultiplayerGame extends Game {
 
     @Override
     public String getVersusMessage() {
-        return players.get(0).getName() + " vs. " + players.get(1).getName();
+        return playerOne.getName() + " vs. " + playerTwo.getName();
     }
 }
