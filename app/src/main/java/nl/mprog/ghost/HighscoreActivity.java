@@ -2,14 +2,11 @@ package nl.mprog.ghost;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 import nl.mprog.ghost.database.UserDbHandler;
 import nl.mprog.ghost.helper.HighscoreListViewAdapter;

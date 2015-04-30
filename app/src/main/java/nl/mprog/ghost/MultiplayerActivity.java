@@ -8,12 +8,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
-import java.util.ArrayList;
-import java.util.List;
 
 import nl.mprog.ghost.database.UserDbHandler;
 import nl.mprog.ghost.models.Dictionary;
-import nl.mprog.ghost.models.Game;
 import nl.mprog.ghost.models.MultiplayerGame;
 import nl.mprog.ghost.models.User;
 

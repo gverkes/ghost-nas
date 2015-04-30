@@ -1,6 +1,5 @@
 package nl.mprog.ghost.models;
 
-import java.util.List;
 
 /**
  * Created by govert on 4/28/15.

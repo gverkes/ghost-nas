@@ -2,9 +2,7 @@ package nl.mprog.ghost;
 
 import android.app.Application;
 
-import nl.mprog.ghost.models.Dictionary;
 import nl.mprog.ghost.models.Game;
-import nl.mprog.ghost.models.User;
 
 /**
  * Created by govert on 4/28/15.

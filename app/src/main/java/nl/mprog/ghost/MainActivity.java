@@ -15,9 +15,6 @@ import android.os.Bundle;
 import android.view.View;
 
 
-import nl.mprog.ghost.database.UserDbHandler;
-import nl.mprog.ghost.models.User;
-
 public class MainActivity extends Activity {
 
     @Override

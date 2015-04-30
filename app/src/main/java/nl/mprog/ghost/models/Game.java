@@ -4,7 +4,6 @@ package nl.mprog.ghost.models;
  * Game class, containing a game of the simple word game 'Ghost'
  */
 
-import java.util.List;
 
 
 public abstract class Game {

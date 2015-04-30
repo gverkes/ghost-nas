@@ -1,7 +1,5 @@
 package nl.mprog.ghost.models;
 
-import android.provider.BaseColumns;
-
 /**
  * Created by Govert on 4/21/15.
  * Simple user class, used for the word game 'Ghost'
