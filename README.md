@@ -1,5 +1,7 @@
 # Ghost (Android App)
-Ghost is an Android application replicating the Game 'Ghost', a two-player word game. For more info on Ghost, see [Wikipedia](http://en.wikipedia.org/wiki/Ghost_%28game%29)
+Ghost is an Android application replicating the Game 'Ghost', a two-player word game. For more info on Ghost, see [Wikipedia](http://en.wikipedia.org/wiki/Ghost_%28game%29).
+Other files:
+[Project Code Report](doc/CODE_REPORT.md)
 
 ### Main Features:
 - versus Computer( Easy, Medium, Hard)
@@ -14,7 +16,7 @@ Ghost is an Android application replicating the Game 'Ghost', a two-player word 
 
 ### Activities
 Main goal is keeping it as simple as possible, only add stuff most (>80%) of the users want.
-[Pictures of Sketches](SKETCHES.md)
+[Pictures of Sketches](doc/SKETCHES.md)
 
 ##### MainActivity
 Select a game mode here, change the setting or see highscores
