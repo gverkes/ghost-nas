@@ -82,6 +82,11 @@ See highscores for SinglePlayer and Multiplayer
       info
 </pre>
 
+###Further work
+
+- Better Singleplayer computer decisions
+- Better layout, adding screen tint to all activities
+- Online Multiplayer
 
 ### Frameworks
 - Google play services (Multiplayer support)

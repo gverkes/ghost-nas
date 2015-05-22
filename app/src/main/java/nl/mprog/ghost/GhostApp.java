@@ -1,6 +1,7 @@
 package nl.mprog.ghost;
 
 import android.app.Application;
+import android.util.Log;
 
 import nl.mprog.ghost.models.Game;
 
@@ -17,6 +18,35 @@ public class GhostApp extends Application{
 
     Game game;
     int gameMode;
+    int backgroundTint;
+    boolean backgroundTintEnabled = false;
+    int backgroundTintProgress;
+
+    public boolean isBackgroundTintEnabled() {
+        return backgroundTintEnabled;
+    }
+
+    public void setBackgroundTintEnabled(boolean backgroundTintEnabled) {
+        this.backgroundTintEnabled = backgroundTintEnabled;
+    }
+
+
+    public int getBackgroundTintProgress() {
+        return backgroundTintProgress;
+    }
+
+    public void setBackgroundTintProgress(int backgroundTintProgress) {
+        this.backgroundTintProgress = backgroundTintProgress;
+    }
+
+    public int getBackgroundTint() {
+        return backgroundTint;
+    }
+
+    public void setBackgroundTint(int backgroundTint) {
+        this.backgroundTint = backgroundTint;
+        Log.v("tint: ", Integer.toString(backgroundTint));
+    }
 
     public Game getGame() {
         return game;

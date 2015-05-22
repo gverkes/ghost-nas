@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,6 +18,9 @@ public class HighscoreActivity extends Activity {
     private static final String TAG = "HighscoreActivity";
     UserDbHandler dbHandler;
 
+    GhostApp ghostApp;
+    RelativeLayout mainLayout;
+
     ListView listView;
 
     public ArrayList<HashMap<String, String>> userList;
@@ -26,7 +30,11 @@ public class HighscoreActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_highscore);
+        ghostApp = (GhostApp) this.getApplication();
+
         dbHandler = new UserDbHandler(this);
+
+        mainLayout = (RelativeLayout) findViewById(R.id.mainLayout);
 
         userList = dbHandler.getUserList();
 
@@ -42,6 +50,9 @@ public class HighscoreActivity extends Activity {
 
         HighscoreListViewAdapter adapter = new HighscoreListViewAdapter(this, userList);
         listView.setAdapter(adapter);
+
+        if (ghostApp.isBackgroundTintEnabled())
+            mainLayout.getBackground().setTint(ghostApp.getBackgroundTint());
     }
 
 

@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import nl.mprog.ghost.database.UserDbHandler;
@@ -19,6 +20,7 @@ public class GameActivity extends Activity {
     public static final String TAG = "GameActivity";
 
     GhostApp ghostApp;
+    RelativeLayout mainLayout;
 
     UserDbHandler dbHandler;
 
@@ -37,6 +39,7 @@ public class GameActivity extends Activity {
 
         game = ghostApp.getGame();
 
+        mainLayout = (RelativeLayout) findViewById(R.id.mainLayout);
         txtGuessWord = (TextView) findViewById(R.id.txtGuessWord);
         txtTurnPlayer = (TextView) findViewById(R.id.txtTurnPlayer);
         txtVersus = (TextView) findViewById(R.id.txtVersus);
@@ -45,6 +48,14 @@ public class GameActivity extends Activity {
 
         setTurnTxt();
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if (ghostApp.isBackgroundTintEnabled())
+            mainLayout.getBackground().setTint(ghostApp.getBackgroundTint());
     }
 
     @Override

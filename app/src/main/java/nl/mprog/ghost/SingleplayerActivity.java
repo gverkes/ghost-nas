@@ -11,6 +11,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RatingBar;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import nl.mprog.ghost.database.UserDbHandler;
@@ -25,6 +26,7 @@ public class SingleplayerActivity extends Activity {
     GhostApp ghostApp;
     UserDbHandler dbHandler;
 
+    RelativeLayout mainLayout;
     public static String currentLanguage;
     ImageButton imgBtnLangEn, imgBtnLangNl;
     EditText txtPlayerName;
@@ -39,6 +41,8 @@ public class SingleplayerActivity extends Activity {
         ghostApp = (GhostApp) getApplication();
         dbHandler = new UserDbHandler(this);
 
+        mainLayout = (RelativeLayout) findViewById(R.id.mainLayout);
+
         // Initialize language on english
         currentLanguage = ghostApp.LANGUAGE_EN;
         imgBtnLangEn = (ImageButton) findViewById(R.id.imgBtnLangEn);
@@ -49,6 +53,14 @@ public class SingleplayerActivity extends Activity {
 
         rtbDifficulty = (RatingBar) findViewById(R.id.rtbDifficulty);
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if (ghostApp.isBackgroundTintEnabled())
+            mainLayout.getBackground().setTint(ghostApp.getBackgroundTint());
     }
 
     public void onClickLangEnglish(View view) {

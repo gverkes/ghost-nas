@@ -48,7 +48,7 @@ number of words left that put the computer in a winnable situation. Winnable
 situation for the game Ghost means an odd number of letters left in the word so
 that only the other player will make a full word, and therefore loses.
 
-##User
+###User
 The *User* model is used for saving data about a User. It has a Database
 handler to save the user model to a database.  Containing the following
 variables to save this data about the user:

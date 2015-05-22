@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 
@@ -26,6 +27,7 @@ public class MultiplayerActivity extends Activity {
     GhostApp ghostApp;
     UserDbHandler dbHandler;
 
+    RelativeLayout mainLayout;
     public static String currentLanguage;
     ImageButton imgBtnLangEn, imgBtnLangNl;
     EditText txtPlayerOneName, txtPlayerTwoName;
@@ -37,6 +39,8 @@ public class MultiplayerActivity extends Activity {
 
         ghostApp = ((GhostApp) this.getApplication());
         dbHandler = new UserDbHandler(this);
+
+        mainLayout = (RelativeLayout) findViewById(R.id.mainLayout);
 
         currentLanguage = ghostApp.LANGUAGE_EN;
         imgBtnLangEn = (ImageButton) findViewById(R.id.imgBtnLangEn);
@@ -67,6 +71,14 @@ public class MultiplayerActivity extends Activity {
                 return false;
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if (ghostApp.isBackgroundTintEnabled())
+            mainLayout.getBackground().setTint(ghostApp.getBackgroundTint());
     }
 
     public void onClickLangEnglish(View view) {

@@ -11,17 +11,22 @@ import android.widget.SeekBar;
 
 
 public class SettingsActivity extends Activity {
+    GhostApp ghostApp;
+
     SeekBar skbScreenTint;
-    RelativeLayout settingsMainLayout;
+    RelativeLayout mainLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        skbScreenTint = (SeekBar) findViewById(R.id.skbScreenTint);
-        settingsMainLayout = (RelativeLayout) findViewById(R.id.settingsMainLayout);
+        ghostApp = (GhostApp) this.getApplication();
 
+        skbScreenTint = (SeekBar) findViewById(R.id.skbScreenTint);
+        mainLayout = (RelativeLayout) findViewById(R.id.mainLayout);
+
+        skbScreenTint.setProgress(ghostApp.getBackgroundTintProgress());
 
         skbScreenTint.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
@@ -40,10 +45,22 @@ public class SettingsActivity extends Activity {
                 float hue = (float) progress * 3f;
                 int backgroundTint = Color.HSVToColor(new float[]{hue, 1.0f, 0.6f});
 
-                settingsMainLayout.setBackgroundTintMode(PorterDuff.Mode.OVERLAY);
-                settingsMainLayout.getBackground().setTint(backgroundTint);
+                mainLayout.setBackgroundTintMode(PorterDuff.Mode.OVERLAY);
+                mainLayout.getBackground().setTint(backgroundTint);
+
+                ghostApp.setBackgroundTintEnabled(true);
+                ghostApp.setBackgroundTint(backgroundTint);
+                ghostApp.setBackgroundTintProgress(progress);
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if (ghostApp.isBackgroundTintEnabled())
+            mainLayout.getBackground().setTint(ghostApp.getBackgroundTint());
     }
 
     public void onClickHome(View view) {
