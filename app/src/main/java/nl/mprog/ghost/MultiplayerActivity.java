@@ -4,9 +4,11 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 
 import nl.mprog.ghost.database.UserDbHandler;
@@ -21,7 +23,6 @@ public class MultiplayerActivity extends Activity {
     GhostApp ghostApp;
     UserDbHandler dbHandler;
 
-    // Initialize language to english
     public static String currentLanguage;
     ImageButton imgBtnLangEn, imgBtnLangNl;
     EditText txtPlayerOneName, txtPlayerTwoName;
@@ -41,6 +42,28 @@ public class MultiplayerActivity extends Activity {
 
         txtPlayerOneName = (EditText) findViewById(R.id.txtPlayerOneName);
         txtPlayerTwoName = (EditText) findViewById(R.id.txtPlayerTwoName);
+
+        txtPlayerTwoName.setOnKeyListener(new View.OnKeyListener() {
+            public boolean onKey(View view, int keyCode, KeyEvent keyevent) {
+                //If the keyevent is a key-down event on the "enter" button
+                if ((keyevent.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
+                    onClickMpStart(view);
+                    return true;
+                }
+                return false;
+            }
+        });
+
+        txtPlayerOneName.setOnKeyListener(new View.OnKeyListener() {
+            public boolean onKey(View view, int keyCode, KeyEvent keyevent) {
+                //If the keyevent is a key-down event on the "enter" button
+                if ((keyevent.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
+                    onClickMpStart(view);
+                    return true;
+                }
+                return false;
+            }
+        });
     }
 
     public void onClickLangEnglish(View view) {
@@ -71,25 +94,48 @@ public class MultiplayerActivity extends Activity {
 
     public void onClickMpStart(View view) {
         if (!currentLanguage.equals(ghostApp.LANGUAGE_NONE)) {
-            if (!txtPlayerOneName.getText().equals("")) {
-                if (!txtPlayerTwoName.getText().equals("")) {
+            if (!txtPlayerOneName.getText().toString().equals("")) {
+                if (!txtPlayerTwoName.getText().toString().equals("")) {
                     User playerOne = new User(txtPlayerOneName.getText().toString());
                     User playerTwo = new User(txtPlayerTwoName.getText().toString());
 
                     if (dbHandler.getUserByName(playerOne.getName()) != null) {
-                        Log.e(TAG, "onClickMpStart: Username already exists.");
-                        return;
+                        Log.e(TAG, "onClickMpStart: Username for player one already exists.");
+                        playerOne = dbHandler.getUserByName(playerOne.getName());
                     } else {
                         dbHandler.insert(playerOne);
                     }
 
-                    Dictionary dictionary = new Dictionary(this, currentLanguage, currentLanguage);
+                    if (dbHandler.getUserByName(playerTwo.getName()) != null) {
+                        Log.e(TAG, "onClickMpStart: Username for player two already exists.");
+                        playerTwo = dbHandler.getUserByName(playerTwo.getName());
+                    } else {
+                        dbHandler.insert(playerTwo);
+                    }
 
-                    ghostApp.setGame(new MultiplayerGame(dictionary, playerOne, playerTwo));
-                    ghostApp.setGameMode(ghostApp.MULTIPLAYER_MODE);
+                    Dictionary dictionary;
 
-                    Intent intent = new Intent(this, GameActivity.class);
-                    startActivity(intent);
+                    if (ghostApp.getGame() != null &&
+                            ghostApp.getGame().getDictionary().getLanguage() == currentLanguage) {
+                        dictionary = ghostApp.getGame().getDictionary();
+                        dictionary.reset();
+                    } else {
+                        dictionary = new Dictionary(this, currentLanguage, currentLanguage);
+                    }
+
+                    if (dictionary.count() == 0) {
+                        Toast toast = Toast.makeText(this, "Couldn't load dictionary, try reinstalling the app", Toast.LENGTH_LONG);
+                        toast.show();
+                    } else {
+
+
+                        ghostApp.setGame(new MultiplayerGame(dictionary, playerOne, playerTwo));
+                        ghostApp.setGameMode(ghostApp.MULTIPLAYER_MODE);
+
+                        Intent intent = new Intent(this, GameActivity.class);
+                        startActivity(intent);
+
+                    }
                 }
             }
         }

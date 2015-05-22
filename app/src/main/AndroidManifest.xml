@@ -34,7 +34,7 @@
             android:label="@string/title_activity_highscore" >
         </activity>
         <activity
-            android:windowSoftInputMode="stateVisible"
+            android:windowSoftInputMode="stateAlwaysVisible"
             android:name=".GameActivity"
             android:label="@string/title_activity_game" >
         </activity>

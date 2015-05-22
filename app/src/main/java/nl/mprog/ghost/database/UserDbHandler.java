@@ -71,6 +71,17 @@ public class UserDbHandler extends SQLiteOpenHelper {
     public void clear() {
         SQLiteDatabase db = getWritableDatabase();
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
+        onCreate(db);
+    }
+
+    public boolean exists() {
+        SQLiteDatabase db = getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT name FROM sqlite_master WHERE type= ? AND name= ?", new String[] {"table",  TABLE_NAME});
+
+        if (cursor.moveToFirst()) {
+            return true;
+        }
+        return false;
     }
 
     public void update(User user) {
@@ -90,6 +101,10 @@ public class UserDbHandler extends SQLiteOpenHelper {
     public ArrayList<HashMap<String, String>> getUserList() {
         //Open connection to read only
         SQLiteDatabase db = getReadableDatabase();
+
+        if (!this.exists())
+            return null;
+
         String selectQuery =  "SELECT  " +
                 KEY_ID + "," +
                 KEY_USERNAME + "," +
@@ -98,7 +113,6 @@ public class UserDbHandler extends SQLiteOpenHelper {
                 " FROM " + TABLE_NAME +
                 " ORDER BY " + KEY_SCORE + " DESC ";
 
-        //Student student = new Student();
         ArrayList<HashMap<String, String>> userList = new ArrayList<>();
 
         Cursor cursor = db.rawQuery(selectQuery, null);
@@ -122,6 +136,10 @@ public class UserDbHandler extends SQLiteOpenHelper {
 
     public User getUserByName(String username){
         SQLiteDatabase db = getReadableDatabase();
+
+        if (!this.exists())
+            return null;
+
         String selectQuery =  "SELECT  " +
                 KEY_ID + "," +
                 KEY_USERNAME + "," +
@@ -130,7 +148,6 @@ public class UserDbHandler extends SQLiteOpenHelper {
                 " FROM " + TABLE_NAME +
                 " WHERE " + KEY_USERNAME + "=?";
 
-        int iCount =0;
         User user = null;
 
         Cursor cursor = db.rawQuery(selectQuery, new String[] { String.valueOf(username) } );
@@ -152,6 +169,10 @@ public class UserDbHandler extends SQLiteOpenHelper {
 
     public User getUserById(int Id){
         SQLiteDatabase db = getReadableDatabase();
+
+        if (!this.exists())
+            return null;
+
         String selectQuery =  "SELECT  " +
                 KEY_ID + "," +
                 KEY_USERNAME + "," +
@@ -160,7 +181,6 @@ public class UserDbHandler extends SQLiteOpenHelper {
                 " FROM " + TABLE_NAME +
                 " WHERE " + KEY_ID + "=?";
 
-        int iCount =0;
         User user = null;
 
         Cursor cursor = db.rawQuery(selectQuery, new String[] { String.valueOf(Id) } );

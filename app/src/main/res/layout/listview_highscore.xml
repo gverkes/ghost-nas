@@ -3,7 +3,8 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="5">
+    android:weightSum="5"
+    android:padding="10dp">
 
     <TextView
         android:id="@+id/txtUsername"
@@ -12,7 +13,8 @@
         android:layout_weight="4"
         android:text="Username"
         android:textStyle="bold"
-        android:textSize="30dp"/>
+        android:textSize="30dp"
+        android:textColor="@android:color/background_light" />
 
     <TextView
         android:id="@+id/txtScore"
@@ -20,6 +22,7 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:text="Score"
-        android:textSize="30dp"/>
+        android:textSize="30dp"
+        android:textColor="@android:color/background_light" />
 
 </LinearLayout>

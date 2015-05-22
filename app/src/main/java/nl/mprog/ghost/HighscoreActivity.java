@@ -1,6 +1,7 @@
 package nl.mprog.ghost;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
@@ -50,5 +51,10 @@ public class HighscoreActivity extends Activity {
 
         HighscoreListViewAdapter adapter = new HighscoreListViewAdapter(this, userList);
         listView.setAdapter(adapter);
+    }
+
+    public void onClickHome(View view) {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 }

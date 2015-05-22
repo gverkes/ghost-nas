@@ -5,7 +5,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="nl.mprog.ghost.GameActivity"
-    android:onClick="onClickActivity">
+    android:background="@drawable/background">
 
     <TextView
         android:layout_width="wrap_content"
@@ -14,7 +14,8 @@
         android:id="@+id/txtVersus"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:text="Versus Text" />
+        android:text="Versus Text"
+        android:textColor="@android:color/background_light" />
 
     <LinearLayout
         android:orientation="horizontal"
@@ -34,12 +35,11 @@
         android:textStyle="bold"
         android:textSize="70dp"
         android:clickable="true"
-        android:layout_marginTop="67dp"
-        android:layout_below="@+id/linearLayout"
+        android:layout_marginTop="75dp"
+        android:layout_below="@+id/txtTurnPlayer"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:textColor="@android:color/background_light" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -48,5 +48,19 @@
         android:text="Turn Text"
         android:id="@+id/txtTurnPlayer"
         android:layout_alignTop="@+id/linearLayout"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:textColor="@android:color/background_light" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imgBtnHome"
+        android:src="@drawable/ic_home_white_48dp"
+        android:clickable="true"
+        android:background="@null"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:onClick="onClickHome" />
+
 </RelativeLayout>

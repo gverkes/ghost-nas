@@ -1,5 +1,7 @@
 package nl.mprog.ghost.models;
 
+import nl.mprog.ghost.database.UserDbHandler;
+
 /**
  * Created by Govert on 4/21/15.
  * Simple user class, used for the word game 'Ghost'
@@ -8,6 +10,7 @@ package nl.mprog.ghost.models;
 
 public class User {
 
+    UserDbHandler dbHandler;
 
     private int id;
     private String name;
@@ -52,6 +55,10 @@ public class User {
 
     public void increaseNumberOfGames() {
         numberOfGames++;
+    }
+
+    public void increaseScore() {
+        score++;
     }
 
     public int getScore() {
