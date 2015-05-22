@@ -15,7 +15,7 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:clickable="true"
-        android:background="@null"
+        android:background="@drawable/rounded_btn"
         android:onClick="onClickSettings" />
 
     <Button

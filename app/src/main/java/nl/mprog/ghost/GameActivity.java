@@ -84,19 +84,29 @@ public class GameActivity extends Activity {
                 dbHandler.update(player);
             }
 
-            // Reset game
-            game.reset();
-
             final Dialog dialog = new Dialog(this);
             dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
             dialog.setContentView(R.layout.replay_popup);
 
             ImageButton btnDialogReplay = (ImageButton) dialog.findViewById(R.id.imgBtnReplay);
+            ImageButton btnDialogNewGame = (ImageButton) dialog.findViewById(R.id.imgBtnNewGame);
+            TextView txtWinner = (TextView) dialog.findViewById(R.id.txtWinner);
+
+            txtWinner.setText(game.getWinnerName() + " won!");
+
             // if button is clicked, close the custom dialog
             btnDialogReplay.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     onClickReplay(v);
+                    dialog.dismiss();
+                }
+            });
+
+            btnDialogNewGame.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onClickNewGame(v);
                     dialog.dismiss();
                 }
             });
@@ -120,7 +130,6 @@ public class GameActivity extends Activity {
     }
 
     public void onClickHome(View view) {
-        Log.e(TAG, "clicked home?");
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
@@ -129,10 +138,19 @@ public class GameActivity extends Activity {
         game.reset();
 
         txtGuessWord.setText("");
-
         txtVersus.setText(game.getPlayersNames()[0] + getString(R.string.versus_msg) + game.getPlayersNames()[1]);
-
         setTurnTxt();
+    }
 
+    public void onClickNewGame(View view) {
+        Intent intent;
+
+        if (ghostApp.getGameMode() == ghostApp.MULTIPLAYER_MODE) {
+            intent = new Intent(this, MultiplayerActivity.class);
+        } else {
+            intent = new Intent(this, SingleplayerActivity.class);
+        }
+
+        startActivity(intent);
     }
 }

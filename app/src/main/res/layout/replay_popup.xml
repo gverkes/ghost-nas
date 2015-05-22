@@ -5,6 +5,15 @@
     android:weightSum="1"
     android:background="@null">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Winner"
+        android:id="@+id/txtWinner"
+        android:layout_gravity="center_horizontal"
+        android:textColor="@android:color/background_light" />
+
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="wrap_content"

@@ -35,7 +35,7 @@
         android:id="@+id/imageButton"
         android:src="@drawable/ic_home_white_48dp"
         android:clickable="true"
-        android:background="@null"
+        android:background="@drawable/rounded_btn"
         android:onClick="onClickHome"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"

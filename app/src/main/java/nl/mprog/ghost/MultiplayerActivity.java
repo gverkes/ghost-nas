@@ -1,11 +1,14 @@
 package nl.mprog.ghost;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
@@ -124,7 +127,7 @@ public class MultiplayerActivity extends Activity {
                     }
 
                     if (dictionary.count() == 0) {
-                        Toast toast = Toast.makeText(this, "Couldn't load dictionary, try reinstalling the app", Toast.LENGTH_LONG);
+                        Toast toast = Toast.makeText(this, getString(R.string.couldnt_load_dicitionary), Toast.LENGTH_LONG);
                         toast.show();
                     } else {
 
@@ -136,8 +139,30 @@ public class MultiplayerActivity extends Activity {
                         startActivity(intent);
 
                     }
+                } else {
+                    Toast toast = Toast.makeText(this, getString(R.string.please_fill_in_names), Toast.LENGTH_LONG);
+                    toast.show();
                 }
+            } else {
+                Toast toast = Toast.makeText(this, getString(R.string.please_fill_in_names), Toast.LENGTH_LONG);
+                toast.show();
             }
+        } else {
+            Toast toast = Toast.makeText(this, getString(R.string.please_select_language), Toast.LENGTH_LONG);
+            toast.show();
         }
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        InputMethodManager imm = (InputMethodManager)getSystemService(Context.
+                INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+        return true;
+    }
+
+    public void onClickHome(View view) {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 }

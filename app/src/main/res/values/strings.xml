@@ -23,4 +23,7 @@
     <string name="won_msg">" won!"</string>
     <string name="versus_msg">" vs. "</string>
     <string name="turn_msg_singleplayer">Your turn</string>
+    <string name="couldnt_load_dicitionary">Couldn\'t load dictionary, try reinstalling the app</string>
+    <string name="please_select_language">Please select a language</string>
+    <string name="please_fill_in_names">Please fill in all player names</string>
 </resources>

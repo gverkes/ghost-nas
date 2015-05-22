@@ -9,9 +9,9 @@ import java.util.Map;
  * Created by govert on 4/28/15.
  */
 public class SingleplayerGame extends Game {
-    public static final int DIFFICULTY_EASY = 0;
-    public static final int DIFFICULTY_NORMAL = 1;
-    public static final int DIFFICULTY_HARD = 2;
+    public static final int DIFFICULTY_EASY = 1;
+    public static final int DIFFICULTY_NORMAL = 2;
+    public static final int DIFFICULTY_HARD = 3;
 
     private User player, computer;
     private int difficulty;
@@ -33,11 +33,17 @@ public class SingleplayerGame extends Game {
 
     @Override
     public void guess(char guessedChar) {
+        // Do player guess
         super.guess(guessedChar);
+        nextTurn();
         checkIfWinner();
 
-        super.guess(computerGuess());
-        checkIfWinner();
+        // Do computer guess
+        if (!ended()) {
+            super.guess(computerGuess());
+            nextTurn();
+            checkIfWinner();
+        }
     }
 
     @Override
@@ -62,14 +68,33 @@ public class SingleplayerGame extends Game {
         // only if none of them match it stays 'Z' but that also means the word can only be
         // made with 'Z'
         char computerGuessChar = 'Z';
+        HashMap<Character, int[]> filt = getDictionary().possibleFilters();
 
+
+        // Algorithm for determining a computer guess in easy mode
         if (difficulty == DIFFICULTY_EASY) {
+            int maxWords = 0;
 
+            for (Map.Entry<Character, int[]> entry : filt.entrySet())
+            {
+                if (maxWords < entry.getValue()[0]) {
+                    maxWords = entry.getValue()[0];
+                    computerGuessChar = entry.getKey();
+                }
+            }
+        // Algorithm for determining a computer guess in easy mode
         } else if (difficulty == DIFFICULTY_NORMAL) {
+            int maxWords = 0;
 
+            for (Map.Entry<Character, int[]> entry : filt.entrySet())
+            {
+                if (maxWords < entry.getValue()[0]) {
+                    maxWords = entry.getValue()[0];
+                    computerGuessChar = entry.getKey();
+                }
+            }
+        // Algorithm for determining a computer guess in easy mode
         } else if (difficulty == DIFFICULTY_HARD) {
-            HashMap<Character, int[]> filt = getDictionary().possibleFilters();
-
             int minWords = -1;
             float maxRatioWOddWords = 0;
 
@@ -91,14 +116,10 @@ public class SingleplayerGame extends Game {
                     if (computerGuessChar == 'Z') {
                         computerGuessChar = entry.getKey();
                     }
-
-                    Log.i("possibleFilters", entry.getKey() + ": " + Integer.toString(entry.getValue()[0]) +
-                            " | " + Integer.toString(entry.getValue()[1]));
                 }
             }
-
-            return computerGuessChar;
         }
+
         return computerGuessChar;
     }
 
@@ -123,6 +144,10 @@ public class SingleplayerGame extends Game {
     @Override
     public User turn() {
         return turnPlayer;
+    }
+
+    public void nextTurn() {
+        turnPlayer = (turnPlayer == player) ? computer : player;
     }
 
     @Override

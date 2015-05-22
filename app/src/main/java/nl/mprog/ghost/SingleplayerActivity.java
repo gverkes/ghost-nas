@@ -1,15 +1,16 @@
 package nl.mprog.ghost;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.TextView;
+import android.widget.RatingBar;
 import android.widget.Toast;
 
 import nl.mprog.ghost.database.UserDbHandler;
@@ -27,6 +28,7 @@ public class SingleplayerActivity extends Activity {
     public static String currentLanguage;
     ImageButton imgBtnLangEn, imgBtnLangNl;
     EditText txtPlayerName;
+    RatingBar rtbDifficulty;
 
 
     @Override
@@ -44,6 +46,8 @@ public class SingleplayerActivity extends Activity {
         imgBtnLangEn.setImageResource(R.drawable.language_en_selected);
 
         txtPlayerName = (EditText) findViewById(R.id.txtPlayerName);
+
+        rtbDifficulty = (RatingBar) findViewById(R.id.rtbDifficulty);
 
     }
 
@@ -94,21 +98,51 @@ public class SingleplayerActivity extends Activity {
                     dictionary = new Dictionary(this, currentLanguage, currentLanguage);
                 }
 
+                // Check if dictionary is correctly loaded
                 if (dictionary.count() == 0) {
-
                     Toast toast = Toast.makeText(this, "Couldn't load dictionary, try reinstalling the app", Toast.LENGTH_LONG);
                     toast.show();
 
                 } else {
 
-                    ghostApp.setGame(new SingleplayerGame(dictionary, player, SingleplayerGame.DIFFICULTY_HARD));
+                    // Determine selected difficulty and use it to create a new SingeplayerGame
+                    int difficulty;
+                    switch ((int)rtbDifficulty.getRating()) {
+                        case SingleplayerGame.DIFFICULTY_EASY:
+                            difficulty = SingleplayerGame.DIFFICULTY_EASY;
+                            break;
+                        case SingleplayerGame.DIFFICULTY_NORMAL:
+                            difficulty = SingleplayerGame.DIFFICULTY_NORMAL;
+                            break;
+                        case SingleplayerGame.DIFFICULTY_HARD:
+                            difficulty = SingleplayerGame.DIFFICULTY_HARD;
+                            break;
+                        default:
+                            difficulty = SingleplayerGame.DIFFICULTY_EASY;
+                    }
+
+                    ghostApp.setGame(new SingleplayerGame(dictionary, player, difficulty));
                     ghostApp.setGameMode(ghostApp.SINGLEPLAYER_MODE);
 
+                    // Start the actual Game Activity
                     Intent intent = new Intent(this, GameActivity.class);
                     startActivity(intent);
 
                 }
             }
         }
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        InputMethodManager imm = (InputMethodManager)getSystemService(Context.
+                INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+        return true;
+    }
+
+    public void onClickHome(View view) {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 }
