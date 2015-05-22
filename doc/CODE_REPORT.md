@@ -28,7 +28,7 @@ are:
 - *possibleFilters*,  Makes a HashMap of every character showing words lefter
                         after adding this character to the filter
 
-##Game
+###Game
 Game Model is an abstract model, used by the MultiplayerGame and
 SingleplayerGame models. Every other class that uses either MultiplayerGame or
 SingleplayerGame are guaranteed to have the functionality declared in this
@@ -38,10 +38,10 @@ abstract model. The most important functions in the Game Model are:
 
 - *checkIfWinner*,  function to check if there is an winner and for which reason
 
-###MultiplayerGame
+####MultiplayerGame
 The MultiplayerGame Model is used for *player vs player* games.
 
-###SingleplayerGame
+####SingleplayerGame
 The MultiplayerGame Model is used for *player vs computer* games.
 The decisions of the computer are based on the number words left and on the
 number of words left that put the computer in a winnable situation. Winnable
